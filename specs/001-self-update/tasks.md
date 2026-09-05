@@ -248,6 +248,13 @@
 **커밋**: `docs(release): add release procedure and update manifest tooling`
 **예상**: 2h
 
+**결과 (2026-09-06)**: 완료. AC-13 충족. 산출물: `docs/release.md`(OR-1~OR-4 전부), `scripts/make-update-json.sh`, `dist/update.json`(첫 릴리스 자리표시자, APK 올린 뒤 sha/url 채움).
+- 검증: 스크립트 출력이 T3 파서를 통과함을 테스트로 고정(`sample-update.json` fixture, 누적 65개 통과). 임시 keystore로 `assembleRelease`가 실제 서명(CN=Rimo)되는 것 확인, `keystore.properties` 형식이 build.gradle.kts와 일치. 검증 후 임시 keystore.properties 삭제(커밋 안 됨).
+- **당신 몫으로 남긴 것(제가 못 하는 것)**:
+  - GitHub 저장소 `gmkim0717/rimo`가 **아직 없음(404)**. Public으로 생성 후 `git push -u origin main` 필요. Private이면 raw URL을 앱이 못 읽음.
+  - keystore 생성·백업·백업 위치 기록. `docs/release.md` 0-2에 빈 표로 둠.
+  - 이 둘이 끝나야 T9(실제 GitHub 경로 리허설) 가능.
+
 ---
 
 ## T9 · 실기기 전체 수용 검증 (첫 배포 리허설)

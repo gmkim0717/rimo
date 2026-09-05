@@ -1,0 +1,8 @@
+{
+  "versionCode": 2,
+  "versionName": "0.2.0",
+  "apkUrl": "https://github.com/gmkim0717/rimo/releases/download/v0.2.0/rimo-0.2.0.apk",
+  "sha256": "01512630e209b160bd234d3fc4536f91e5f5b4a61ef879cd2b43cc02b9ddf111",
+  "apkSizeBytes": 12852786,
+  "changelog": "fix reconnect"
+}

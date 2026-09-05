@@ -3,6 +3,7 @@ package com.rimo.player.data.update
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class UpdateInfoParserTest {
@@ -115,5 +116,19 @@ class UpdateInfoParserTest {
     @Test
     fun `blank version name is rejected`() {
         assertNull(parser.parse(manifest(versionName = "\"   \"")))
+    }
+
+    /** Guards that scripts/make-update-json.sh output stays parseable. */
+    @Test
+    fun `sample manifest from make-update-json script parses`() {
+        val text = javaClass.classLoader!!.getResourceAsStream("sample-update.json")!!
+            .bufferedReader().use { it.readText() }
+        val info = parser.parse(text)
+        assertNotNull(info)
+        assertEquals(2L, info!!.versionCode)
+        assertEquals("0.2.0", info.versionName)
+        assertTrue(info.apkUrl.startsWith("https://"))
+        assertEquals(64, info.sha256.length)
+        assertNotNull(info.apkSizeBytes)
     }
 }
