@@ -73,6 +73,8 @@
 **커밋**: `feat(update): add version rule and retry policy`
 **예상**: 2h
 
+**결과 (2026-09-06)**: 완료. 테스트 13개 통과 (VersionRule 7, RetryPolicy 6). 함수명은 plan의 `isNewer` 대신 의도가 드러나는 `shouldDownload` / `isReadyUseful`로 정함. 재시도 의미는 spec대로 "첫 시도 + 재시도 5회 = 최대 6회 시도".
+
 ---
 
 ## T3 · UpdateInfoParser + UpdateInfoFetcher
