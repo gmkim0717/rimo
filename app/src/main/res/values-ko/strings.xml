@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">리모</string>
+
+    <string name="update_ready_title">업데이트 준비 완료</string>
+    <string name="update_ready_body">새 버전 %1$s을(를) 받았습니다. 지금 설치할까요?</string>
+    <string name="update_install_now">지금 설치</string>
+    <string name="update_later">나중에</string>
 </resources>

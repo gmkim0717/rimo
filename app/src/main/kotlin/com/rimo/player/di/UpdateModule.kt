@@ -16,6 +16,7 @@ import com.rimo.player.domain.update.ManifestSource
 import com.rimo.player.domain.update.RetryPolicy
 import com.rimo.player.domain.update.UpdateCoordinator
 import com.rimo.player.domain.update.UpdateStore
+import com.rimo.player.ui.update.UpdatePromptGate
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -64,6 +65,11 @@ object UpdateModule {
         dataStore: DataStore<Preferences>,
         @IoDispatcher io: CoroutineDispatcher,
     ): UpdateStore = LocalUpdateStore(dataStore, context.filesDir, io)
+
+    @Provides
+    @Singleton
+    fun provideUpdatePromptGate(coordinator: UpdateCoordinator): UpdatePromptGate =
+        UpdatePromptGate(coordinator.state)
 
     @Provides
     @Singleton

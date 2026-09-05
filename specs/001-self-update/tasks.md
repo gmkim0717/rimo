@@ -187,6 +187,11 @@
 **커밋**: `feat(update): show install prompt with d-pad focus`
 **예상**: 2h
 
+**결과 (2026-09-06)**: 완료. Gate 테스트 4개 추가, 누적 59개 통과. Nox에서 캡처로 확인: 실행 즉시 안내(중/한/영 세 언어 모두 확인, 일본어 설정 시 영어 fallback), 초기 포커스 [나중에]에 3dp 흰 테두리, → 키로 [지금 설치]로 이동, 확인 키로 닫힘 + `install postponed` 로그, 홈→재진입 시 재표시 없음, force-stop 후 재실행 시 즉시 재표시, BACK = 나중에, [지금 설치] → `install requested` 로그.
+- 설계: Gate는 ViewModel이 아니라 프로세스 단일 객체. Activity가 BACK으로 닫혔다가 같은 프로세스에서 다시 열려도 재질문하지 않도록.
+- 발견·수정: 에뮬레이터가 터치 모드일 때 `requestFocus()`가 무시되어 초기 테두리가 안 보였음 → 버튼에 `focusableInTouchMode` + `onStart`에서 post로 포커스 요청. 실제 박스엔 영향 없고 터치 지원 박스에 대비.
+- 언어 확인은 `adb shell cmd locale set-app-locales com.rimo.player --user 0 --locales ko-KR`(Android 13+)로 했음.
+
 ---
 
 ## T7 · ApkInstaller + InstallResultReceiver

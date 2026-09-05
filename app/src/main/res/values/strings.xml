@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Rimo</string>
+
+    <string name="update_ready_title">Update ready</string>
+    <string name="update_ready_body">Version %1$s has been downloaded. Install it now?</string>
+    <string name="update_install_now">Install now</string>
+    <string name="update_later">Later</string>
 </resources>

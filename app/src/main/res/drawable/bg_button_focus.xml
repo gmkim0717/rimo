@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Focus must be unmistakable from 3 metres: a thick white border plus a lighter fill. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#3A3A3A" />
+            <corners android:radius="6dp" />
+            <stroke android:width="3dp" android:color="#FFFFFF" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#2C2C2C" />
+            <corners android:radius="6dp" />
+            <stroke android:width="1dp" android:color="#555555" />
+        </shape>
+    </item>
+</selector>
