@@ -16,9 +16,10 @@ import org.junit.Test
 class UpdateInfoFetcherTest {
 
     private lateinit var server: MockWebServer
+    // Generous timeouts: the loopback server is fast, but a loaded CI/dev box is not.
     private val client = OkHttpClient.Builder()
-        .connectTimeout(2, TimeUnit.SECONDS)
-        .readTimeout(2, TimeUnit.SECONDS)
+        .connectTimeout(10, TimeUnit.SECONDS)
+        .readTimeout(10, TimeUnit.SECONDS)
         .build()
 
     @Before

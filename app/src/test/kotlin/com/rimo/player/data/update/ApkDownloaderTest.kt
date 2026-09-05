@@ -33,9 +33,10 @@ class ApkDownloaderTest {
     private lateinit var dir: File
     private val slept = mutableListOf<Duration>()
 
+    // Generous timeouts: the loopback server is fast, but a loaded CI/dev box is not.
     private val client = OkHttpClient.Builder()
-        .connectTimeout(2, TimeUnit.SECONDS)
-        .readTimeout(2, TimeUnit.SECONDS)
+        .connectTimeout(10, TimeUnit.SECONDS)
+        .readTimeout(10, TimeUnit.SECONDS)
         .build()
 
     private val payload: ByteArray = Random(42).nextBytes(300_000)
