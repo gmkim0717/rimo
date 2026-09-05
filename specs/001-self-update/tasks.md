@@ -122,6 +122,8 @@
 **커밋**: `feat(update): stream apk download with sha256 verification and retry`
 **예상**: 3h
 
+**결과 (2026-09-06)**: 완료. 테스트 11개 추가, 누적 44개 통과. 정상 / 끊김 2회 후 3회째 성공 / 6회 전부 실패(1+5) 후 파일 없음 / 404도 재시도 / sha 불일치는 재시도 없이 폐기 / 저장공간 부족 시 요청 0회 / 기존 파일 교체 / 상위 디렉터리 생성 / 16MB 스트리밍. heap 제한 테스트는 MockWebServer가 응답 본문을 메모리에 들고 있어 의미가 없으므로 생략하고, 8KB 고정 버퍼 코드로 대체. 재시도 대기는 주입식(`sleep`)이라 테스트는 1초 안에 끝남.
+
 ---
 
 ## T5 · UpdateStore + UpdateCoordinator + 앱 시작 연결
