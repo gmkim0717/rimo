@@ -95,6 +95,8 @@
 **커밋**: `feat(update): parse and fetch update manifest`
 **예상**: 2h
 
+**결과 (2026-09-06)**: 완료. 테스트 20개 추가(Parser 13, Fetcher 7), 누적 33개 통과. plan 조정: 파서의 `http` 거부는 release에서만이고 debug 빌드는 허용(`allowInsecureUrls = BuildConfig.DEBUG`). 이유는 T5 LAN 테스트에서 APK 주소도 http이기 때문. Fetcher는 64KB 초과 응답을 거부.
+
 ---
 
 ## T4 · ApkDownloader
