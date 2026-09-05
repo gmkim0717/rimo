@@ -25,8 +25,10 @@ android {
         applicationId = "com.rimo.player"
         minSdk = 28
         targetSdk = 34
-        versionCode = 1
-        versionName = "0.1.0"
+        // -Primo.versionCode=N / -Primo.versionName=X let manual update tests build a "newer" APK
+        // without editing this file. Releases use the values here.
+        versionCode = providers.gradleProperty("rimo.versionCode").orNull?.toInt() ?: 1
+        versionName = providers.gradleProperty("rimo.versionName").orNull ?: "0.1.0"
 
         buildConfigField("String", "UPDATE_URL", "\"$updateUrl\"")
     }

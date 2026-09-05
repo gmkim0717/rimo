@@ -156,6 +156,10 @@
 **커밋**: `feat(update): orchestrate check-download-ready flow on app start`
 **예상**: 3h
 
+**결과 (2026-09-06)**: 완료. Coordinator 테스트 11개 추가, 누적 55개 통과. Nox(Android 15)에서 LAN 서버(`python -m http.server`)로 수동 검증 1~7 전부 확인: versionCode 1 설치 → 실행 → 로그 `downloading 2` → `ready to install 2`, `files/updates/2.apk` sha256 일치, DataStore 파일 생성. 재실행 시 `restored ready apk 2` 즉시. update.json 404 / 깨진 JSON / 동일 버전 세 경우 모두 `manifest unavailable or invalid` 또는 `no newer version` 로그만 남기고 크래시 0, 재다운로드 없음.
+- 설계 메모: ready 파일이 있는 동안은 Checking/Downloading 상태를 노출하지 않고 ReadyToInstall을 유지한다(UI가 제안을 잃지 않게). domain은 `ManifestSource`/`ApkSource` 인터페이스만 알고, data 어댑터는 `UpdateModule`에 있음.
+- 빌드 편의: `-Primo.versionCode=N -Primo.versionName=X`로 "새 버전" APK를 만들 수 있게 함.
+
 ---
 
 ## T6 · 설치 안내 다이얼로그 (UI)
