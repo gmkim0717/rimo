@@ -47,7 +47,7 @@
 **커밋**: `chore(build): bootstrap single-module android project`
 **예상**: 3h
 
-**결과 (2026-09-05)**: 자동 기준 3개 충족. 박스 수동 검증은 대기.
+**결과 (2026-09-05)**: 자동 기준 3개 충족. 수동 검증은 PC의 Nox 에뮬레이터(Android 15, x86_64, 시스템 언어 중국어)에서 대행: 런처에 "Rimo 播放器" 아이콘 표시, 실행 시 검은 화면·크래시 없음, BACK으로 종료 확인. 실제 박스(Android 9/11) 확인은 T9에서 몰아서 한다.
 - 버전 확정: AGP 8.13.2, Gradle 8.14.5, Kotlin 2.2.21, KSP 2.2.21-2.0.5, compileSdk 36
 - plan에서 벗어난 점: Hilt **2.58** (2.59+는 AGP 9 필수), OkHttp **4.12.0** (5.x는 compileSdk 37 필수). 둘 다 성숙한 마지막 안정판이라 문제 없음
 - 개발 PC 도구는 `D:\dev\jdk17`, `D:\dev\android-sdk`에 포터블 설치. Gradle의 JDK는 `~/.gradle/gradle.properties`의 `org.gradle.java.home`으로 지정 (커밋 대상 아님)
