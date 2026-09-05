@@ -216,6 +216,15 @@
 **커밋**: `feat(update): install downloaded apk via PackageInstaller`
 **예상**: 3h
 
+**결과 (2026-09-06)**: 완료. InstallOutcome 단위 테스트 5개 추가, 누적 64개 통과. Nox(Android 15)에서 4경로 확인:
+1. 정상: [지금 설치] → 시스템 확인 화면(우리 앱 아이콘·이름 표시, 更新/취소) → 更新 → versionCode 2로 설치됨. 재실행 시 `stale ready record 2 dropped`로 파일 정리.
+2. 사용자 취소: 시스템 화면에서 취소 → v1 유지, `2.apk` 보관, 로그 `install aborted by user; keeping apk`.
+3. 서명 불일치: 다른 키로 서명한 v2 → `INSTALL_FAILED_UPDATE_INCOMPATIBLE`(status 5) → 앱이 조용히 폐기, `files/updates` 비워짐, 크래시 0.
+4. 알 수 없는 출처 권한: `canRequestPackageInstalls()` false면 `ACTION_MANAGE_UNKNOWN_APP_SOURCES`로 이동, onResume에서 권한 확인 후 재시도. (Nox는 appops로 미리 허용해 확인 화면 자체는 검증)
+- 발견·수정: 생성자 주입 `@IoDispatcher`/`@ApplicationScope`를 정식 import해야 KSP가 해석함(완전경로 참조로는 실패).
+- 정리: 이전 시도가 남긴 추적 안 된 `InstallOutcomeMapperTest.kt`(존재하지 않는 API 참조로 빌드 파괴)를 삭제. 같은 검증은 `InstallOutcomeTest.kt`가 커버.
+- FLAG_MUTABLE은 Android 12+에서만 붙임(대상 9/11엔 무영향, 상위 대비).
+
 ---
 
 ## T8 · 배포 도구: keystore, docs/release.md, make-update-json.sh, dist/update.json

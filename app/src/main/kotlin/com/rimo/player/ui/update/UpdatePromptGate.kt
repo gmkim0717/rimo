@@ -1,6 +1,7 @@
 package com.rimo.player.ui.update
 
 import com.rimo.player.domain.update.UpdateState
+import java.io.File
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +16,7 @@ import kotlinx.coroutines.flow.filterNotNull
  * Process-scoped on purpose: a finished-and-relaunched Activity within the same process
  * must not re-ask, so this is not an Activity ViewModel.
  */
-class UpdatePromptGate(updateState: StateFlow<UpdateState>) {
+class UpdatePromptGate(private val updateState: StateFlow<UpdateState>) {
 
     private val prompted = MutableStateFlow(false)
     private val playbackActive = MutableStateFlow(false)
@@ -30,6 +31,9 @@ class UpdatePromptGate(updateState: StateFlow<UpdateState>) {
     fun markPrompted() {
         prompted.value = true
     }
+
+    /** The APK file of the currently ready update, or `null` if none is ready right now. */
+    fun readyFile(): File? = (updateState.value as? UpdateState.ReadyToInstall)?.file
 
     /** The player screen toggles this; while true the prompt is held back. */
     fun setPlaybackActive(active: Boolean) {
