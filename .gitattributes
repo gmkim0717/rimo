@@ -1,0 +1,15 @@
+# Normalize line endings; the repo is edited on Windows and macOS.
+* text=auto
+
+# Shell scripts must stay LF or bash on macOS/Linux rejects them.
+gradlew text eol=lf
+*.sh text eol=lf
+
+# Windows batch files stay CRLF.
+*.bat text eol=crlf
+
+# Binaries
+*.jar binary
+*.png binary
+*.jks binary
+*.keystore binary
